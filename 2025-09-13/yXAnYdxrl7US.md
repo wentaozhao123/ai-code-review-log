@@ -52,11 +52,9 @@ public class CreditCardStrategy implements PaymentStrategy {
 public class PaymentProcessor {
     private final Map<String, PaymentStrategy> strategies;
 
-    public PaymentProcessor() {
-        this.strategies = new HashMap<>();
-        strategies.put("ALIPAY", new AlipayStrategy());
-        strategies.put("WECHAT", new WechatStrategy());
-        strategies.put("CREDIT_CARD", new CreditCardStrategy());
+    // 构造函数注入Map
+    public PaymentProcessor(Map<String, PaymentStrategy> strategies) {
+        this.strategies = strategies;
     }
 
     public void processPayment(String paymentType, double amount) {
